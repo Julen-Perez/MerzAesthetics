@@ -1,0 +1,16 @@
+<aura:component>
+    <aura:attribute name="heading" type="String" default="" />
+    <aura:attribute name="cloud_detail" type="String" default="" />
+    <aura:attribute name="url" type="String" default="" />
+	<div class="c-description">
+        <lightning:layoutItem flexibility="auto">
+            <div class="custom-box">
+                <p>
+                    <lightning:icon iconName="utility:send" alternativeText="{!v.heading}" size="x-small" title="x-small size"/>
+                    <a class="c-heading" href="{!v.url}">{!v.heading}</a>
+                </p>
+                <p class="slds-text-body_regular c-feature-desc">{!v.cloud_detail}</p>
+            </div>
+        </lightning:layoutItem>
+    </div>
+</aura:component>

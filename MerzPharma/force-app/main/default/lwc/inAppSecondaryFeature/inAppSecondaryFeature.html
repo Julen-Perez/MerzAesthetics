@@ -1,0 +1,204 @@
+<template>
+    <lightning-card footer="" title="">
+        <h1 slot="" class="slds-text-heading_medium">{appWelcomeText}</h1>
+         <div class="c-footer" >
+             <a href="/lightning/app/c__Health_Cloud_Learning_App/page/home">Go to Landing Page</a>
+        </div>
+        <div class="c-container">
+            <lightning-layout>
+                <lightning-layout-item flexibility="auto" padding="around-small">                  
+                        <template if:false={accountId.length}>
+                         <c-in-app-secondary-feature-child heading="Patient Information"
+                                                            app-text="View valuable information about the patient." 
+                                                            image="custom:custom101"
+                                                            secondary-text-present={pass_true}
+                                                            secondary-text=" * The Patient card show valuable clinical information about a patient."
+                                                            secondary-new-line-text-present={pass_true}
+                                                            secondary-care-gap-text=" * Click the Care Gaps to track discrepancies or gaps in the patients care to help improve outcomes."
+                                                            secondary-household-text=" * Click the Household subtab to view the patient's relationship in one single view."
+                                                            secondary-timeline-text=" * Timeline tab on the right side shows a chronological view of health care events for a patient. "
+                                                            no-record={pass_true}>
+                        </c-in-app-secondary-feature-child>   
+                        </template>  
+                        <template if:true={accountId.length}>
+                        <c-in-app-secondary-feature-child heading="Patient Information"
+                                                           app-text="View valuable information about the patient." 
+                                                           image="custom:custom101"
+                                                           app="c__Care_CoordinationApp"
+                                                           object-name="Account" 
+                                                           object-id={accountId} 
+                                                           link-in-new-tab={pass_true}
+                                                           secondary-text-present={pass_true}
+                                                           secondary-text=" * The Patient card show valuable clinical information about a patient."
+                                                           link-reference="standard__recordPage"
+                                                           secondary-new-line-text-present={pass_true}
+                                                           secondary-care-gap-text=" * Click the Care Gaps to track discrepancies or gaps in the patients care to help improve outcomes."
+                                                           secondary-household-text=" * Click the Household subtab to view the patient's relationship in one single view."
+                                                           secondary-timeline-text=" * Timeline tab on the right side shows a chronological view of health care events for a patient. ">
+                        </c-in-app-secondary-feature-child>
+                        </template> 
+
+                        <c-in-app-secondary-feature-child heading="Search Providers"
+                                                           app-text="Search for Healthcare Providers, view their relationships to hospitals or clinics." 
+                                                           image="standard:schedule_objective"
+                                                           app="c__Care_CoordinationApp"
+                                                           page="Provider_Search"
+                                                           link-reference="standard__navItemPage"
+                                                           link-in-new-tab={pass_true}
+                                                           link-text-present={pass_true}
+                                                           provider-text=" * Type David Lee in the Provider Name field, select Primary Care from the Speciality dropdown, and click Search."
+                                                           link-reference-provider="standard__recordPage"
+                                                           object-name-provider="Account" 
+                                                           object-provider-id={makanaaccountId} 
+                                                           end-text-present={pass_true}       
+                                                           end-text=" to open the Makana Clinic Account. Navigate to the Practitioner tab to view Providers at Makana Clinic."
+                                                           link-reference-provider-contact="standard__recordPage"
+                                                           object-name-provider-contact="Contact" 
+                                                           object-provider-contact-id={contactId} 
+                                                           contact-link-present={pass_true}
+                                                           contact-text-present={pass_true}
+                                                           contact-text=" to open Gayathri Satish's contact record. Navigate to the Facilities tab to view hospitals or clinics Gayathri is associated with.">
+                        </c-in-app-secondary-feature-child>
+
+                        <template if:false={receiveddocumentId.length}>
+                        <c-in-app-secondary-feature-child heading="Intelligent Document Automation"
+                                                           app-text="Use Intelligent Document Automation to unify the end-to-end document lifecycle on a single platform and streamline patient document intake." 
+                                                           image="standard:file"
+                                                           secondary-text-present={pass_true}
+                                                           secondary-text=" * Click on the Transform document button to transform the documents."
+                                                           secondary-ida-text-present={pass_true}
+                                                           secondary-ida-text=" * View the Document checklist Item associated to Brenda McClure Lead record.">
+                        </c-in-app-secondary-feature-child>
+                        </template>
+                        <template if:true={receiveddocumentId.length}>
+                        <c-in-app-secondary-feature-child heading="Intelligent Document Automation"
+                                                           app-text="Use Intelligent Document Automation to unify the end-to-end document lifecycle on a single platform and streamline patient document intake." 
+                                                           image="standard:file"
+                                                           app="c__Care_CoordinationApp"
+                                                           object-name="ReceivedDocument" 
+                                                           object-id={receiveddocumentId} 
+                                                           link-reference="standard__recordPage"
+                                                           link-in-new-tab={pass_true}
+                                                           secondary-text-present={pass_true}
+                                                           secondary-text=" * Click on the Transform document button to transform the documents."
+                                                           secondary-ida-text-present={pass_true}
+                                                           secondary-ida-text=" * View the Document checklist Item associated to Brenda McClure Lead record.">
+                        </c-in-app-secondary-feature-child>
+                        </template>     
+
+                        <template if:false={accountId.length}>
+                        <c-in-app-secondary-feature-child heading="Medication Management"
+                                                                 app-text="Manage the medication regimen of patients, helping to improve patient safety and reduce healthcare costs." 
+                                                                 image="standard:medication_reconciliation"
+                                                                 secondary-text-present={pass_true}
+                                                                 secondary-text=" * Click the Medications tab under Charles Green subtab."
+                                                                 secondary-mm-text-present={pass_true}
+                                                                 secondary-mm-text=" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Medications List is the view of all the patient medications."
+                                                                 secondary-mr-text=" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Medication Reconciliation is a view of patients reconciliation of current and previous medications."
+                                                                 no_record={pass_true}>
+                        </c-in-app-secondary-feature-child>
+                        </template> 
+                        <template if:true={accountId.length}>
+                        <c-in-app-secondary-feature-child heading="Medication Management"
+                                                                 app-text="Manage the medication regimen of patients, helping to improve patient safety and reduce healthcare costs." 
+                                                                 image="standard:medication_reconciliation"
+                                                                 app="c__Care_CoordinationApp"
+                                                                 object-name="Account" 
+                                                                 object-id={accountId} 
+                                                                 link-in-new-tab={pass_true}
+                                                                 link-reference="standard__recordPage"
+                                                                 secondary-text-present={pass_true}
+                                                                 secondary-text=" * Click the Medications tab under Charles Green subtab."
+                                                                 secondary-mm-text-present={pass_true}
+                                                                 secondary-mm-text=" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Medications List is the view of all the patient medications."
+                                                                 secondary-mr-text=" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Medication Reconciliation is a view of patients reconciliation of current and previous medications.">
+                        </c-in-app-secondary-feature-child>         
+                        </template>
+
+                        <template if:false={providerleadId.length}>
+                        <c-in-app-secondary-feature-child heading="Provider Network Management"
+                                                            app-text="Register network participations for participating providers, facilities, and networks, and bind them together with a contract." 
+                                                            image="standard:groups"
+                                                            pnm-text-present={pass_true}
+                                                            pnm-text=" * Recruitment: Janice completes the Provider recruitment form and submits it. "
+                                                            pnm-recruitment-text=" View the resulting Provider recruitment lead record.\n"
+                                                            pnm-credentialing-text=" * Credentialing: Bill Steller completed the Credentialing process and the lead record is converted to an account record. "
+                                                            pnm-credntialing-end-text=" to view Bill Steller's account record. Look at the details and credentials tab for the details provided by Bill.\n"
+                                                            pnm-network-text=" * Network: Click "
+                                                            pnm-network-end-text=" to open the Fortis Hospital account. View the network and contract data in the Network Participation tab.\n"
+                                                            pnm-contract-text=" * Contract: Click "
+                                                            pnm-contract-end-text=" to open a contract record. View the network and contract data in the Network Participation tab. Under the Related tab, view the Contract Payment Agreements types."
+                                                            no-record={pass_true}>
+                        </c-in-app-secondary-feature-child>
+                        </template>
+                        <template if:true={providerleadId.length}>
+                                <c-in-app-secondary-feature-child heading="Provider Network Management"
+                                                                    app-text="Register network participations for participating providers, facilities, and networks, and bind them together with a contract." 
+                                                                    image="standard:groups"
+                                                                    link-in-new-tab={pass_true}
+                                                                    app="c__Provider_Network_Management"
+                                                                    object-name="Lead" 
+                                                                    object-id={providerleadId}
+                                                                    link-reference="standard__recordPage"
+                                                                    pnm-text-present={pass_true}
+                                                                    pnm-text=" * Recruitment: Janice completes the Provider recruitment form and submits it. "
+                                                                    pnm-recruitment-text=" View the resulting Provider recruitment lead record."
+                                                                    pnm-credentialing-text=" * Credentialing: Bill Steller completed the Credentialing process and the lead record is converted to an account record. "
+                                                                    object-name-credential="Account" 
+                                                                    object-credential-id={credentialaccountId}
+                                                                    link-reference-credential="standard__recordPage"
+                                                                    pnm-credntialing-end-text=" to view Bill Steller's account record. Look at the details and credentials tab for the details provided by Bill."
+                                                                    pnm-network-text=" * Network: Click "
+                                                                    object-name-account="Account" 
+                                                                    object-account-id={fortisaccountId}
+                                                                    link-reference-account="standard__recordPage"
+                                                                    pnm-network-end-text=" to open the Fortis Hospital account. View the network and contract data in the Network Participation tab."
+                                                                    pnm-contract-text=" * Contract: Click "
+                                                                    object-name-contract="Contract" 
+                                                                    object-contract-id={contractId}
+                                                                    link-reference-contract="standard__recordPage"
+                                                                    pnm-contract-end-text=" to open a contract record. View the network and contract data in the Network Participation tab. Under the Related tab, view the Contract Payment Agreements types.">
+                                </c-in-app-secondary-feature-child>
+                        </template>
+
+                        <c-in-app-secondary-feature-child heading="Utilization Management"
+                                                            app-text="Members and medical providers can use Utilization Management to review and evaluate medical care services and help health plan members ensure they receive the right care in the right setting at the right time."
+                                                            image="standard:case"
+                                                            link-in-new-tab={pass_true}
+                                                            app="c__Utilization_Management"
+                                                            link-reference="standard__namedPage"
+                                                            page="home"
+                                                            secondary-text-present={pass_true}
+                                                            secondary-text="* Navigate to Care Request tab."
+                                                            secondary-um-text-present={pass_true}
+                                                            secondary-care-request-text=" * Click on one of the Care Request types to create a Manual Auth."
+                                                            secondary-case-tab=" * Navigate to the Case tab and select the Prior Authorization list view to view various care requests records.">
+                        </c-in-app-secondary-feature-child>
+                   
+                        <template if:false={accountId.length}>
+                        <c-in-app-secondary-feature-child heading="Unified Health Scoring"
+                                                           app-text="Help your users get a holistic view of their patients' health profiles." 
+                                                           image="standard:unified_health_score"
+                                                           secondary-text-present={pass_true}
+                                                           secondary_text="* In the Charles Green subtab click the Unified Health Score tab."
+                                                           no-record={pass_true}>
+                        </c-in-app-secondary-feature-child>
+                        </template>
+                        <template if:true={accountId.length}>
+                        <c-in-app-secondary-feature-child heading="Unified Health Scoring"
+                                                           app-text="Help your users get a holistic view of their patients' health profiles." 
+                                                           image="standard:unified_health_score"
+                                                           app="c__Care_CoordinationApp"
+                                                           object-name="Account" 
+                                                           object-id={accountId} 
+                                                           link-reference="standard__recordPage"
+                                                           link-in-new-tab="true"
+                                                           secondary-text-present={pass_true}
+                                                           secondary-text="* In the Charles Green subtab, click the Unified Health Score tab.">
+                        </c-in-app-secondary-feature-child>
+                </template>
+               </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,33 @@
+<template>
+    <lightning-card footer="" title="">
+        <h1 slot="title" class="slds-text-heading_medium">{welcome_text}</h1>
+        <div class="c-container">
+            <lightning-layout>
+                <lightning-layout-item flexibility="auto" padding="around-small">
+                    <p class="c-description">{description}</p>
+                    <c-learning-home-child 
+                        heading="Provider" 
+                        cloud_detail="Seamlessly connect care teams to a 360-degree view of every patient on a single, HIPAA-compliant platform." 
+                        url="/lightning/n/Provider">
+                    </c-learning-home-child >
+                    <c-learning-home-child 
+                        heading="Payer"
+                        cloud_detail="Enable a seamless experience across the entire member journey, from acquisition and onboarding through engagement and retention." 
+                        url="/lightning/n/Payer">
+                    </c-learning-home-child>
+                    <c-learning-home-child
+                        heading="Medtech"
+                        cloud_detail="Transform virtual sales, provider relationships, and patient engagement to accelerate value and drive results." 
+                        url="/lightning/n/Medtech"
+                        link_in_new_tab="true">
+                    </c-learning-home-child>
+                    <c-learning-home-child 
+                        heading="Pharma" 
+                        cloud_detail="Acquire, support, and engage patients throughout their health journey with a streamlined engagement platform that connects people, data, and processes." 
+                        url="/lightning/n/Pharma">
+                    </c-learning-home-child>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+</template>

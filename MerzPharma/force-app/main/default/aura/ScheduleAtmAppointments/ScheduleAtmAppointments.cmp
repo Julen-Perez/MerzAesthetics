@@ -1,0 +1,11 @@
+<aura:component controller="EnrolleeWorkStepController" implements="lightning:isUrlAddressable,force:hasRecordId,force:appHostable">
+	<aura:attribute name="assessmentTaskId" type="String"/>
+   	<aura:attribute name="visitId" type="String"/>
+   	<aura:attribute name="pageReference" type="Object"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <lightning:navigation aura:id="navService"/>
+    <lightning:messageChannel type="lightning__industries_componentTaskInput" aura:id="ComponentTaskInputChannel"/>
+    <lightning:empApi aura:id="empApi" />
+</aura:component>

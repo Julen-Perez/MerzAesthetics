@@ -1,0 +1,92 @@
+<template>
+    <div class="c-description">
+        <lightning-layout-item flexibility="auto">
+            <div class="custom-box">
+                <p>
+                    <lightning-icon icon-name={image} alternative-text={heading} title={heading}></lightning-icon>
+                    <a class="c-heading" onclick={handleClick}>{heading}</a>
+                    <template if:true={noRecord}>
+                        <div class="slds-text-body_small c-no-record">
+                            (There are NO records to navigate to - Clickable link will NOT work)
+                        </div>
+                    </template>
+                </p>
+                <p class="slds-text-body_regular c-feature-desc">{appText}</p>
+                <p class="slds-text-body_regular c-feature-desc"><u>{stepsText}</u></p>
+                <template if:true={secondaryTextPresent}>
+                    <div class="slds-text-body_regular c-feature-desc-second">
+                        <p> <lightning-formatted-text value={secondaryText}></lightning-formatted-text> </p>
+                    </div>
+                </template>
+                <template if:true={secondaryNewLineTextPresent}>
+                    <div class="slds-text-body_regular c-feature-desc-second">
+                        <p> <lightning-formatted-text value={secondaryCarePlanText}></lightning-formatted-text> </p>
+                        <p> <lightning-formatted-text value={secondaryCareGapText}></lightning-formatted-text> </p>
+                        <p> <lightning-formatted-text value={secondaryHouseholdText}></lightning-formatted-text> </p>
+                        <p> <lightning-formatted-text value={secondaryAssessmentText}></lightning-formatted-text> </p>
+                        <p> <lightning-formatted-text value={secondaryBenefitsText}></lightning-formatted-text> </p>
+                        <p> <lightning-formatted-text value={secondarySocialText}></lightning-formatted-text> </p>
+                        <p> <lightning-formatted-text value={secondaryDeviceText}></lightning-formatted-text> </p>
+                        <p> <lightning-formatted-text value={secondaryVerificationText}></lightning-formatted-text> </p>
+                        <p> <lightning-formatted-text value={secondaryTimelineText}></lightning-formatted-text> </p>
+                    </div>
+                </template>
+                <template if:true={secondaryUmTextPresent}>
+                    <div class="slds-text-body_regular c-feature-desc-second">
+                        <p> <lightning-formatted-text value={secondaryCareRequestText}></lightning-formatted-text> </p>
+                        <p> <lightning-formatted-text value={secondaryCaseTab}></lightning-formatted-text> </p>
+                    </div>
+                </template>
+                <template if:true={secondaryMmTextPresent}>
+                    <div class="slds-text-body_regular c-feature-desc-second">
+                        <p> <lightning-formatted-text value={secondaryMmText}></lightning-formatted-text> </p>
+                        <p> <lightning-formatted-text value={secondaryMrText}></lightning-formatted-text> </p>
+                    </div>
+                </template>
+                <template if:true={linkTextPresent}>
+                    <div class="slds-text-body_regular c-feature-desc-second">
+                        <p> <lightning-formatted-text value={providerText}></lightning-formatted-text> </p>
+                        <lightning-formatted-text value={startText}></lightning-formatted-text>
+                        <a class="slds-text-body_regular c-feature-desc-second"
+                            onclick={handleClickForProviderAccount}>{here}</a>
+                        <lightning-formatted-text value={endText}></lightning-formatted-text>
+                        <p></p>
+                        <lightning-formatted-text value={startText}></lightning-formatted-text>
+                        <a class="slds-text-body_regular c-feature-desc-second"
+                            onclick={handleClickForProviderContact}>{here}</a>
+                        <lightning-formatted-text value={contactText}></lightning-formatted-text>
+                        <p></p>
+
+                    </div>
+                </template>
+                <template if:true={secondaryIdaTextPresent}>
+                    <div class="slds-text-body_regular c-feature-desc-second">
+                        <p> <lightning-formatted-text value={secondaryIdaText}></lightning-formatted-text> </p>
+                    </div>
+                </template>
+                <template if:true={pnmTextPresent}>
+                    <div class="slds-text-body_regular c-feature-desc-second">
+                        <lightning-formatted-text value={pnmText}></lightning-formatted-text>
+                        <lightning-formatted-text value={pnmRecruitmentText}></lightning-formatted-text>
+                        <p></p>
+                        <lightning-formatted-text value={pnmCredentialingText}></lightning-formatted-text>
+                        <lightning-formatted-text value={startTextWithoutStar}></lightning-formatted-text>
+                        <a class="slds-text-body_regular c-feature-desc-second"
+                            onclick={handleClickForCredential}>{here}</a>
+                        <lightning-formatted-text value={pnmCredntialingEndText}></lightning-formatted-text>
+                        <p></p>
+                        <lightning-formatted-text value={pnmNetworkText}></lightning-formatted-text>
+                        <a class="slds-text-body_regular c-feature-desc-second"
+                            onclick={handleClickForAccount}>{here}</a>
+                        <lightning-formatted-text value={pnmNetworkEndText}></lightning-formatted-text>
+                        <p></p>
+                        <lightning-formatted-text value={pnmContractText}></lightning-formatted-text>
+                        <a class="slds-text-body_regular c-feature-desc-second"
+                            onclick={handleClickForContract}>{here}</a>
+                        <lightning-formatted-text value={pnmContractEndText}></lightning-formatted-text>
+                    </div>
+                </template>
+            </div>
+        </lightning-layout-item>
+    </div>
+</template>

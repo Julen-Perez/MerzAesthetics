@@ -1,0 +1,8 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,lightning:availableForFlowScreens" access="global" >
+    <lightning:workspaceAPI aura:id="workspace" />
+    <aura:attribute name="ParentTabId" type="String" />
+    <aura:attribute name="EngagementId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+	<div>Parent Tab Id: {!v.ParentTabId}</div>
+    <div>Engagement Id: {!v.EngagementId}</div>
+</aura:component>

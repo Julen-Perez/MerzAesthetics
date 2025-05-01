@@ -1,0 +1,192 @@
+<template>
+    <lightning-card footer="" title="">
+        <h1 slot="" class="slds-text-heading_medium">{appWelcomeText}</h1>
+         <div class="c-footer" >
+             <a href="/lightning/app/c__Health_Cloud_Learning_App/page/home">Go to Landing Page</a>
+        </div>
+        <div class="c-container">
+            <lightning-layout>
+                <lightning-layout-item flexibility="auto" padding="around-small">                  
+                        <template if:false={accountId.length}>
+                         <c-in-app-quaternary-feature-child heading="Patient Information"
+                                                            app-text="View key information about the patient." 
+                                                            image="custom:custom101"
+                                                            secondary-text-present="true"
+                                                            secondary-text=" * The Patient card shows valuable clinical information about a patient."
+                                                            secondary-new-line-text-present={pass_true}
+                                                            secondary-care-plan-text=" * Click the All Care Plans subtab to view the history of the patient, including progress or challenges related to their health."
+                                                            secondary-care-gap-text=" * Click the Care Gaps subtab to track discrepancies or gaps in the patient's care and improve outcomes."
+                                                            secondary-household-text=" * Click the Household subtab to view the patient's relationship in one single view."
+                                                            secondary-benefits-text=" * In the Charles Green subtab, click the Benefits tab to view health benefits coverage."
+                                                            secondary-device-text=" * In the Charles Green subtab, click the Device Data tab to view Care Metrics and identify gaps."
+                                                            secondary-timeline-text=" *  In the Charles Green subtab, click the Health Timeline to view a chronological view of health care events for a patient."
+                                                            no-record={pass_true}>
+                        </c-in-app-quaternary-feature-child>   
+                        </template>  
+                        <template if:true={accountId.length}>
+                        <c-in-app-quaternary-feature-child heading="Patient Information"
+                                                           app-text="View key information about the patient." 
+                                                           image="custom:custom101"
+                                                           app="c__Care_CoordinationApp"
+                                                           object-name="Account" 
+                                                           object-id={accountId} 
+                                                           link-in-new-tab={pass_true}
+                                                           link-reference="standard__recordPage"
+                                                           secondary-text-present="true"
+                                                           secondary-text=" * The Patient card shows valuable clinical information about a patient."
+                                                           secondary-new-line-text-present={pass_true}
+                                                           secondary-care-plan-text=" * Click the All Care Plans subtab to view the history of the patient, including progress or challenges related to their health."
+                                                           secondary-care-gap-text=" * Click the Care Gaps subtab to track discrepancies or gaps in the patient's care and improve outcomes."
+                                                           secondary-household-text=" * Click the Household subtab to view the patient's relationship in one single view."
+                                                           secondary-benefits-text=" * In the Charles Green subtab, click the Benefits tab to view health benefits coverage."
+                                                           secondary-device-text=" * In the Charles Green subtab, click the Device Data tab to view Care Metrics and identify gaps."
+                                                           secondary-timeline-text=" *  In the Charles Green subtab, click the Health Timeline to view a chronological view of health care events for a patient.">
+                        </c-in-app-quaternary-feature-child>
+                        </template> 
+
+                        <template if:false={leadrefferalmanagementId.length}>
+                        <c-in-app-quaternary-feature-child heading="Referral Management"
+                                                           app-text="Use Referral Management to monitor referrals from submission to closure, ensure timely referral processing, and track final confirmation of a referral." 
+                                                           image="standard:lead"
+                                                           refferal-text-present={pass_true}
+                                                           refferal-text=" to open the Working Referrals list view on opportunities and view all opportunity records for referrals."
+                                                           no-record={pass_true}>
+                        </c-in-app-quaternary-feature-child>
+                        </template>
+                        <template if:true={leadrefferalmanagementId.length}>
+                        <c-in-app-quaternary-feature-child heading="Referral Management"
+                                                            app-text="Use Referral Management to monitor referrals from submission to closure, ensure timely referral processing, and track final confirmation of a referral." 
+                                                            image="standard:lead"
+                                                            app="c__Care_CoordinationApp"
+                                                            object-name="Lead" 
+                                                            filter-name={leadrefferalmanagementId}
+                                                            link-reference="standard__objectPage"
+                                                            link-in-new-tab={pass_true}
+                                                            refferal-text-present={pass_true}
+                                                            refferal-start-text=" * View Incoming Referrals list view on leads for patient referrals."
+                                                            link-reference-opportunity="standard__objectPage"
+                                                            object-name-opportunity="Opportunity" 
+                                                            filter-name-opportunity={leadworkingrefferalId}
+                                                            refferal-text=" to open the Working Referrals list view on opportunities and view the opportunity records for referrals.">
+                        </c-in-app-quaternary-feature-child>
+                        </template>
+
+                        <template if:false={careprogramId.length}>
+                                    <c-in-app-quaternary-feature-child heading="Care Programs"
+                                                                       app-text="Enroll patients in Care Programs to increase adherence to a care plan and drive better health outcomes." 
+                                                                       image="custom:custom86"
+                                                                       secondary-text-present={pass_true}
+                                                                       secondary-text=" * Click the Related tab to view enrollees, team members, products, and goals."
+                                                                       link-text-present={pass_true}
+                                                                       link-text=" to open Ben Green's account. Then click the Enroll in Program quick action, follow the steps to enroll Ben and capture consent for the Kanaka Patient Assistance Program Care Program."
+                                                                       no-record={pass_true}>
+                        </c-in-app-quaternary-feature-child>
+                        </template>
+                        <template if:true={careprogramId.length}>
+                        <c-in-app-quaternary-feature-child heading="Care Programs"
+                                                            app-text="Enroll patients in Care Programs to increase adherence to a care plan and drive better health outcomes." 
+                                                            image="custom:custom86"
+                                                            app="c__Care_CoordinationApp"
+                                                            object-name="CareProgram" 
+                                                            object-id={careprogramId} 
+                                                            link-reference="standard__recordPage"
+                                                            link-in-new-tab={pass_true}
+                                                            secondary-text-present={pass_true}
+                                                            secondary-text=" * Click the Related tab to view enrollees, team members, products, and goals."
+                                                            link-text-present={pass_true}
+                                                            object-name-account="Account" 
+                                                            object-account-id={benaccountId} 
+                                                            link-reference-account="standard__recordPage"
+                                                            link-text=" to open Ben Green's account. Then click the Enroll in Program quick action, follow the steps to enroll Ben and capture consent for the Kanaka Patient Assistance Program Care Program.">
+                        </c-in-app-quaternary-feature-child>
+                        </template>
+
+                        <template if:false={careprogramenrolleeId.length}>
+                        <c-in-app-quaternary-feature-child heading="Advanced Therapy Managementv"
+                                                            app-text="Manage slots and scheduling across multiple territories in a single place, to help users easily search for and book appointments across multiple sites." 
+                                                            image="standard:recipe"
+                                                            secondary-text-present={pass_true}
+                                                            secondary-text=" * View Charles Green Enrollee Details and Appointment Slots."
+                                                            link-text-present={pass_true}
+                                                            link-text=" to open Shawna Green's Enrolee Record. Click on the Book New Slots button to book Appointments. Select Makana Commercial Delivery in Work Procedure, select Makana Gene Therapy Center in Work Procedure Organization field and click on search."
+                                                            no-record={pass_true}>
+                        </c-in-app-quaternary-feature-child>
+                        </template>
+                        <template if:true={careprogramenrolleeId.length}>
+                        <c-in-app-quaternary-feature-child heading="Advanced Therapy Management"
+                                                            app-text="Manage slots and scheduling across multiple territories in a single place, to help users easily search for and book appointments across multiple sites." 
+                                                            image="standard:recipe"
+                                                            app="standard__AdvancedTherapyManagement"
+                                                            object-name="CareProgramEnrollee" 
+                                                            object-id={careprogramenrolleeId} 
+                                                            link-reference="standard__recordPage"
+                                                            link-in-new-tab={pass_true}
+                                                            secondary-text-present={pass_true}
+                                                            secondary-text=" * View Charles Green Enrollee Details and Appointment Slots."
+                                                            link-text-present={pass_true}
+                                                            object-name-account="CareProgramEnrollee" 
+                                                            object-account-id={shawnacareprogramId} 
+                                                            link-reference-account="standard__recordPage"
+                                                            link-text=" to open Shawna Green's Enrolee Record. Click on the Book New Slots button to book Appointments. Select Makana Commercial Delivery in Work Procedure, select Makana Gene Therapy Center in Work Procedure Organization field and click on search.">
+                        </c-in-app-quaternary-feature-child>
+                        </template>
+
+                        <template if:false={accountId.length}>
+                        <c-in-app-quaternary-feature-child heading="Medication Management"
+                                                           app-text="Manage the medication regimen of patients, helping to improve patient safety and reduce healthcare costs." 
+                                                           image="standard:medication_reconciliation"
+                                                           secondary-text-present={pass_true}
+                                                           secondary-text=" * Click the Medications tab under Charles Green subtab."
+                                                           secondary-mm-text-present={pass_true}
+                                                           secondary-mm-text=" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Medications List is the view of all the patient medications."
+                                                           secondary-mr-text=" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Medication Reconciliation is a view of patients reconciliation of current and previous medications."
+                                                           no_record={pass_true}>
+                        </c-in-app-quaternary-feature-child>
+                        </template> 
+                        <template if:true={accountId.length}>
+                                <c-in-app-quaternary-feature-child heading="Medication Management"
+                                                                    app-text="Manage the medication regimen of patients, helping to improve patient safety and reduce healthcare costs." 
+                                                                    image="standard:medication_reconciliation"
+                                                                    app="c__Care_CoordinationApp"
+                                                                    object-name="Account" 
+                                                                    object-id={accountId} 
+                                                                    link-in-new-tab={pass_true}
+                                                                    link-reference="standard__recordPage"
+                                                                    secondary-text-present={pass_true}
+                                                                    secondary-text=" * Click the Medications tab under Charles Green subtab."
+                                                                    secondary-mm-text-present={pass_true}
+                                                                    secondary-mm-text=" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Medications List is the view of all the patient medications."
+                                                                    secondary-mr-text=" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Medication Reconciliation is a view of patients reconciliation of current and previous medications.">
+                        </c-in-app-quaternary-feature-child>         
+                        </template>
+
+                        <template if:false={receiveddocumentId.length}>
+                        <c-in-app-quaternary-feature-child heading="Intelligent Document Automation"
+                                                           app-text="Use Intelligent Document Automation to unify the end-to-end document lifecycle on a single platform and streamline patient document intake." 
+                                                           image="standard:file"
+                                                           secondary-text-present={pass_true}
+                                                           secondary-text=" * Click Transform document to transform the documents."
+                                                           secondary-ida-text-present={pass_true}
+                                                           secondary-ida-text=" * View the Document checklist Item associated to Brenda McClure Lead record.">
+                        </c-in-app-quaternary-feature-child>
+                        </template>
+                        <template if:true={receiveddocumentId.length}>
+                        <c-in-app-quaternary-feature-child heading="Intelligent Document Automation"
+                                                           app-text="Use Intelligent Document Automation to unify the end-to-end document lifecycle on a single platform and streamline patient document intake." 
+                                                           image="standard:file"
+                                                           app="c__Care_CoordinationApp"
+                                                           object-name="ReceivedDocument" 
+                                                           object-id={receiveddocumentId} 
+                                                           link-reference="standard__recordPage"
+                                                           link-in-new-tab={pass_true}
+                                                           secondary-text-present={pass_true}
+                                                           secondary-text=" * Click Transform document to transform the documents."
+                                                           secondary-ida-text-present={pass_true}
+                                                           secondary-ida-text=" * View the Document checklist Item associated to Brenda McClure Lead record.">
+                        </c-in-app-quaternary-feature-child>
+                        </template>                              
+               </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+</template>
