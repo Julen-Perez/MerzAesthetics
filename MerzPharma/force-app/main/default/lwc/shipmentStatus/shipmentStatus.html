@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Shipment Status">
+        <div class="slds-p-around_medium">
+            <template if:true={status}>
+                <div class="slds-m-top_medium">
+                    <strong>Status:</strong> {status}
+                </div>
+            </template>
+            <template if:true={error}>
+                <div class="slds-m-top_medium slds-text-color_error">
+                    {error}
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template> 
