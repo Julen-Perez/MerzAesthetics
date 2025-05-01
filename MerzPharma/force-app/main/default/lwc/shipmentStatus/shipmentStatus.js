@@ -10,6 +10,7 @@ export default class ShipmentStatus extends LightningElement {
     @track error = '';
     @track loading = false;
 
+    //Make this wire so it is reactive and updates when the recordId changes, in case it was initially empty
     @wire(getRecord, { recordId: '$recordId', fields: FIELDS })
     wiredRecord({ error, data }) {
         if (data) {
@@ -24,6 +25,7 @@ export default class ShipmentStatus extends LightningElement {
         console.log('ShipmentStatus constructor');
     }
 
+    //In case we didnt want to use the wire, we could use the connectedCallback to fetch the status
     connectedCallback() {
     }
 
@@ -36,6 +38,15 @@ export default class ShipmentStatus extends LightningElement {
         this.error = error && error.message ? error.message : 'Unknown error';
     }
 
+    //This is used to determine the progress step based on the status
+    get progressStep() {
+        // Example status: "Shipped- On Time"
+        if (this.status.includes('Delivered')) return 3;
+        if (this.status.includes('Shipped')) return 2;
+        if (this.status.includes('Accepted')) return 1;
+            return 0;
+    }
+    //Each class is activated based on the progressStep value
     get acceptedClass() {
         return 'progress-step' + (this.progressStep >= 1 ? ' active' : '');
     }
@@ -46,6 +57,7 @@ export default class ShipmentStatus extends LightningElement {
         return 'progress-step' + (this.progressStep >= 3 ? ' active' : '');
     }
 
+    //This is used to determine the timing status based on the status
     get timingStatus() {
         console.log('ShipmentStatus timingStatus', this.status);
         console.log('ShipmentStatus timingStatus this.status.includes', this.status.includes('On Time'));
@@ -53,26 +65,21 @@ export default class ShipmentStatus extends LightningElement {
         if (this.status.includes('Delayed')) return 'Delayed';
         return 'Unknown';
     }
+    //This is used to determine the timing class based on the timing status
     get timingClass() {
         if (this.timingStatus === 'On Time') return 'timing-badge timing-success';
         if (this.timingStatus === 'Delayed') return 'timing-badge timing-error';
         return 'timing-badge';
     }
+    //This is used to determine the timing icon based on the timing status
     get timingIcon() {
         if (this.timingStatus === 'On Time') return 'utility:success';
         if (this.timingStatus === 'Delayed') return 'utility:error';
         return 'utility:info';
     }
-    get progressStep() {
-        // Example status: "Shipped- On Time"
-        console.log('ShipmentStatus progressStep', this.status);
-        console.log('ShipmentStatus progressStep this.status.startsWith', this.status.startsWith('Shipped'));
-        if (this.status.includes('Delivered')) return 3;
-        if (this.status.includes('Shipped')) return 2;
-        if (this.status.includes('Accepted')) return 1;
-        return 0;
-    }
 
+
+    //This is used to fetch the status from the apex class
     async fetchStatus() {
         this.status = '';
         this.error = '';

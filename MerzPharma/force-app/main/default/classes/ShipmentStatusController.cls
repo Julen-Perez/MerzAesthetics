@@ -1,5 +1,6 @@
 public with sharing class ShipmentStatusController {
-    // Uncomment this to use the Merz_IntegrationSettings__c object
+    // Uncomment this to use the Merz_IntegrationSettings__c object, make sure to create the record in your org with ShipmentConsultation as the name and the endpoint url as the value
+    
     //private static Merz_IntegrationSettings__c settingsInstance;
     //public static final String SHIPMENT_INTEGRATION_NAME = 'ShipmentConsultation';
 

@@ -1,18 +1,44 @@
-# Salesforce DX Project: Next Steps
+# Merz Pharma Shipment Status Integration
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+## Overview
+This project includes a Lightning Web Component (LWC) and supporting Apex logic to display real-time shipment status for `Shipment` records in Salesforce. The status is fetched from an external API and visualized with a progress bar and timing badge.
 
-## How Do You Plan to Deploy Your Changes?
+## Notes
+- All required metadata for this solution is included in `manifest/MerzShipmentTracking`.
+- No profiles or roles were created as part of this package.
+- A Custom Setting was created to handle endpoints, Ensure such custom setting is populated in case you want to make use of it instead of having a hardcoded endpoint.
+- The component supports multiple shipment statuses including "Accepted", "Shipped", and "Delivered", with timing indicators for "On Time" and "Delayed" conditions.
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+## Features
+- **LWC (`shipmentStatus`)**: Shows shipment progress (Accepted → Shipped → Delivered) and timing (On Time, Pending, Delayed) with color-coded badges and icons.
+- **Apex Controller (`ShipmentStatusController`)**: Calls an external API using the shipment's tracking number and returns the status.
+- **Test Coverage**: Comprehensive test class with HTTP callout mocks and error handling.
+- **Custom Setting**: Uses a custom setting (`Merz_IntegrationSettings__c`) with the name `ShipmentConsultation` to store the endpoint URL for the shipment status API.
+- **RemoteSiteSetting**: Configured as `Merz_Shipment_Tracking` to allow callouts to the external shipment tracking API endpoint.
+- **FlexiPage**: Includes a custom `Shipment_Record_Page` where the shipment status component is pre-configured for immediate use.
 
-## Configure Your Salesforce DX Project
+## Setup Instructions
+Deploy the manifest/MerzShipmentTracking/package.xml package on the destination org.
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+1. **Custom Setting** (optional)
+   - After deploying the package add a record with:
+     - **Name**: `ShipmentConsultation`
+     - **Merz_Endpoint__c**: The endpoint URL for the shipment status API (e.g., `https://merzcommunities--tina.sandbox.my.salesforce-sites.com/services/apexrest/mockShipmentStatus`).
 
-## Read All About It
+2. **Apex Controller**
+   - `ShipmentStatusController` queries the `TrackingNumber` from the `Shipment` record, retrieves the endpoint from the custom setting, and makes an HTTP callout to fetch the status.
+   - Handles errors for missing tracking numbers and failed API calls.
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+3. **LWC Usage**
+   - The LWC `shipmentStatus` has been placed on the standard Shipment_Record_Page  `Shipment` record page.
+   - The component will automatically fetch and display the shipment status, updating in real time as the record changes.
+
+4. **Testing**
+   - The test class (`ShipmentStatusControllerTest`) uses `@testSetup` for data creation and mocks HTTP callouts for both success and error scenarios.
+
+
+
+
+- **Status Response Example**: `<response>Shipped- On Time</response>` other examples can be tried by modifying the "response" on the apex class.
+
+
