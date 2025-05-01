@@ -1,0 +1,59 @@
+.progress-bar-container {
+    width: 100%;
+    margin-bottom: 1em;
+}
+.progress-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f3f3f3;
+    border-radius: 1em;
+    padding: 0.5em 1em;
+}
+.progress-step {
+    flex: 1;
+    text-align: center;
+    padding: 0.5em 0;
+    border-radius: 1em;
+    background: #e0e0e0;
+    color: #888;
+    font-weight: 500;
+    transition: background 0.3s, color 0.3s;
+    margin: 0 0.2em;
+}
+.progress-step.active {
+    background: #1589ee;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(21,137,238,0.15);
+}
+.timing-badge {
+    padding: 0.3em 1em;
+    border-radius: 1em;
+    font-weight: bold;
+    font-size: 1.1em;
+    background: #f3f3f3;
+    display: inline-block;
+    vertical-align: middle;
+}
+.timing-success {
+    background: #e6f9ed;
+    color: #04844b;
+}
+.timing-error {
+    background: #fdeaea;
+    color: #ba0517;
+}
+.timing-warning {
+    background: #fff8e1;
+    color: #8a6d1a;
+}
+.timing-status {
+    display: flex;
+    align-items: center;
+    animation: fadeIn 0.7s;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px);}
+    to { opacity: 1; transform: translateY(0);}
+} 

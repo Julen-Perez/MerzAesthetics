@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Shipment Status">
+        <div class="slds-p-around_medium">
+            <template if:true={loading}>
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </template>
+            <template if:true={status}>
+                <div class="progress-bar-container slds-m-bottom_medium">
+                    <div class="progress-bar">
+                        <div class={acceptedClass}>Accepted</div>
+                        <div class={shippedClass}>Shipped</div>
+                        <div class={deliveredClass}>Delivered</div>
+                    </div>
+                </div>
+                <div class="timing-status slds-m-top_medium">
+                    <lightning-icon icon-name={timingIcon} size="small" class="slds-m-right_small"></lightning-icon>
+                    <span class={timingClass}>{timingStatus}</span>
+                </div>
+            </template>
+            <template if:true={error}>
+                <div class="slds-m-top_medium slds-text-color_error">
+                    {error}
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template> 
