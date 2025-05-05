@@ -1,4 +1,0 @@
-<design:component>
-	 <design:attribute name="DetailId" label="DetailId" />
-    <design:attribute name="Description" label="Description" />
-</design:component>
